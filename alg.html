@@ -1,0 +1,132 @@
+<html lang="en"><head>
+    <meta charset="UTF-8" >
+    <title>Path Finding algorithm comparison</title>
+    <link rel="stylesheet" href="alg_source/mystyles.css">
+    <script src="closure-library/closure/goog/base.js"></script>
+    <script>
+        goog.require('goog.structs.PriorityQueue');
+        goog.require('goog.structs.Queue');
+    </script>
+    <script src="alg_source/types.js"></script>
+    <script src="alg_source/dijkstra.js"></script>
+    <script src="alg_source/bfs.js"></script>
+    <script src="alg_source/dfs.js"></script>
+    <script src="alg_source/astar.js"></script>
+    <script src="alg_source/graphics.js"></script>
+    <script src="alg_source/pathfinder.js"></script>
+    <script src="alg_source/script.js"></script>
+</head>
+
+<body id="main_body" onload=init();>
+    <div id="wrapper">
+        <div id="coordinate">(0, 0)</div>
+        <div id="fps">0 fps</div>
+        <div id="counter">długość ścieżki:  0 </div>
+    </div>​
+    <div id="main_editor_ui">
+        <canvas id="main_editor">Please use a better browser! </canvas>
+        <div id="ui">
+            <button id="btn_play"  onclick="Play()"><img src="icon/play.png"/></button>
+            <button id="btn_pause" onclick="Pause()"><img id="img_pause" src="icon/eraser.png"/></button>
+            <button id="btn_step" onclick="Step()"><img src="icon/step.png"/></button>
+
+            <div id="dfs" class="property_area_with_border">
+                <div class="kolor">
+                    <input type="radio" name="alg" value="0" class="check_box" checked />
+                </div>
+                <div class="opis">
+                    DFS
+                    <input type="checkbox" name="dfs_opt" class="check_box_opt">
+                    najkrótsza ścieżka
+
+                </div>
+            </div>
+            <div id="bfs" class="property_area_with_border">
+                <div class="kolor">
+                    <input type="radio" name="alg" value="1" class="check_box" />
+                </div>
+                <div class="opis">BFS</div>
+            </div>
+            <div id="dijkstra" class="property_area_with_border">
+                <div class="kolor">
+                    <input type="radio" name="alg" value="2" class="check_box" />
+                </div>
+                <div class="opis">Dijkstra</div>
+            </div>
+            <div id="astar" class="property_area_with_border">
+                <div class="kolor">
+                    <input type="radio" name="alg" value="3" class="check_box" />
+                </div>
+                <div class="opis">A*</div>
+            </div>
+            <div>
+                LEGENDA
+            </div>
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="empty_square"></div>
+                </div>
+                <div class="opis">Teren dostępny</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="stack_square"></div>
+                </div>
+                <div class="opis">Dodany do kolejki</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="chosen_square"></div>
+                </div>
+                <div class="opis">Aktualnie wybrany</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="deleted_square"></div>
+                </div>
+                <div class="opis">Odwiedzony</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="block_square"></div>
+                </div>
+                <div class="opis">Niedostępny</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="start_square"></div>
+                </div>
+                <div class="opis">Punkt początkowy</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="end_square"></div>
+                </div>
+                <div class="opis">Punkt końcowy</div>
+            </div>
+
+            <div class="property_area">
+                <div class="kolor">
+                    <div class="square" id="path_square"></div>
+                </div>
+                <div class="opis">Ścieżka</div>
+            </div>
+
+<!--
+            <div id="stack_square" class="square" > | stack</div>
+            <div id="chosen_square" class="square" > | | chosen</div>
+            <div id="deleted_square" class="square" > | deleted</div>
+            <div id="block_square" class="square" > | | block</div>
+            <div id="start_square" class="square"> | start</div>
+            <div id="end_square" class="square"> | | end</div>
+-->
+        </div>
+    </div>
+</body>
+</html>

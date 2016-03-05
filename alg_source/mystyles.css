@@ -1,0 +1,176 @@
+
+body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 0;
+
+    background-color: #808080;
+}
+
+#main_editor_ui
+{
+    position: fixed;
+    left:40%;
+    top:50%;
+}
+
+#ui
+{
+    text-align:center;
+    border: solid black;
+    background-color: white;
+    margin-right: -60%;
+    margin-left: 110%;
+    margin-top: -124.0%;
+}
+
+button
+{
+
+    margin: 10px;
+    background-color: white;
+    border: outset;
+}
+
+.check_box
+{
+    width: 50%;
+    height: 50%;
+    top: 20%;
+    position: relative;
+}
+
+.check_box_opt
+{
+
+    top: 5%;
+    position: relative;
+}
+
+.property_area_with_border
+{
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+
+    margin: 5px;
+    /* background-color: red;*/
+    width: auto;
+    height: 40px;
+
+    line-height: 30px;
+}
+
+.property_area
+{
+    margin: 5px;
+   /* background-color: red;*/
+    width: auto;
+    height: 40px;
+
+
+}
+
+.kolor
+{
+    width: 20%;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    height: inherit;
+    /*background-color: #008800;*/
+}
+
+.opis
+{
+    text-align: left;
+    height: inherit;
+    /*background-color: #ffff00;*/
+    line-height: 40px;
+}
+
+.square
+{
+
+    width: 50%;
+    height: 50%;
+    top: 20%;
+    left: 20%;
+    position: relative;
+
+    border-style: solid;
+    border-color: grey;
+    border-width: 3px;
+}
+
+#path_square
+{
+    background: #ffff00;
+}
+
+#empty_square
+{
+    background: #fff;
+}
+
+#stack_square
+{
+    background: #6495ed;
+}
+
+#chosen_square
+{
+    background: #9acd32;
+}
+
+#deleted_square
+{
+    background: #778899;
+}
+
+#block_square
+{
+    background: #000;
+}
+
+
+#start_square
+{
+    background: #008000;
+}
+
+#end_square
+{
+    background: #ff0000;
+}
+
+#main_editor
+{
+    border: solid black;
+}
+
+#wrapper
+{
+    text-align:center
+}
+
+#coordinate
+{
+    width:100px;
+    text-align: left;
+    float:left;
+    margin-left: 10px;
+}
+
+#counter
+{
+}
+
+#fps
+{
+    float:right;
+    width: 100px;
+    text-align: right;
+}​

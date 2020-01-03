@@ -26,6 +26,9 @@
     <div id="main_editor_ui">
         <canvas id="main_editor">Please use a better browser! </canvas>
         <div id="ui">
+			<div class="slidecontainer">
+				<input type="range" min="1" max="10000" value="200" class="slider" id="animation_speed">
+			</div>
             <button id="btn_play"  onclick="Play()"><img src="icon/play.png"/></button>
             <button id="btn_pause" onclick="Pause()"><img id="img_pause" src="icon/eraser.png"/></button>
             <button id="btn_step" onclick="Step()"><img src="icon/step.png"/></button>

@@ -14,9 +14,11 @@ var is_mouse_down = false;
 var is_mouse_moving = false;
 
 // fps counter
+var no_frame = 0
+var frame_sum = 0
 var fps = 0;
-var now = null;
-var last_update = new Date;
+var last_update = Date.now()
+var last_draw = last_update
 var fps_filter = 1;
 
 // button
@@ -49,14 +51,9 @@ function init()
     setInterval(function()
     {
         document.getElementById('fps').innerHTML = fps.toFixed(1) + "fps";
-    }, 1000);
+    }, 100);
 
-    setInterval(function()
-    {
-        //path_finder.makeStep();
-    }, TIMEOUT);
-
-    frame();
+    setTimeout(frame);
 }
 
 function Play()
@@ -74,27 +71,51 @@ function Pause()
     path_finder.clickPause();
 }
 
-function frame()
+function calculate_delta_time()
 {
-    path_finder.makeStep();
-    map.drawFrame();
-
-    updateFpsCounter();
-    setTimeout(frame, TIMEOUT);
+    var now = Date.now()
+    var diff = (now - last_update);
+    last_update = now;
+    return diff;
 }
 
-function updateFpsCounter()
+function make_steps()
 {
-    now = (new Date)*1;
+    var now = Date.now();
+    var time_from_last_draw = (now - last_draw);
 
-    var diff = (now - last_update);
+    var step_per_second = document.getElementById("animation_speed").value;
+    var step_per_ms = step_per_second / 1000;
+    var step_per_frame = Math.floor(step_per_ms * time_from_last_draw);
+    var unused_time = time_from_last_draw - step_per_frame / step_per_ms;
+    last_draw = now - unused_time;
 
-    var thisFrameFPS = 1000 / diff;
+    while(step_per_frame > 0){
+        path_finder.makeStep();
+        --step_per_frame;
+        map.drawFrame();
+    }
+}
 
-    if (now!=last_update)
+function frame()
+{
+    var dt = calculate_delta_time();
+
+    make_steps();
+
+    map.drawFrame();
+    updateFpsCounter(dt);
+    setTimeout(frame);
+}
+
+function updateFpsCounter(delta_time)
+{
+    if (delta_time > 0)
     {
-        fps += (thisFrameFPS - fps) / fps_filter;
-        last_update = now;
+        ++no_frame;
+        var current_fps = 1000 / delta_time;
+        frame_sum += 1 / current_fps;
+        fps = no_frame / frame_sum;
     }
 }
 

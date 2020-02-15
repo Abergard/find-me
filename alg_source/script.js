@@ -51,7 +51,9 @@ function init()
     setInterval(function()
     {
         document.getElementById('fps').innerHTML = fps.toFixed(1) + "fps";
-    }, 100);
+        no_frame = frame_sum = 0;
+
+    }, 1000);
 
     setTimeout(frame);
 }
